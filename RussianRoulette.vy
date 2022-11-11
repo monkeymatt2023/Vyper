@@ -2,7 +2,7 @@ players: DynArray[address, 100]
 loser: DynArray[address, 100]
 odds: public(uint256)
 playersTurn: public(uint256)
-creator: address
+creator: public(address)
 
 @external
 def __init__():
