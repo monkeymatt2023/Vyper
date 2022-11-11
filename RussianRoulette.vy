@@ -1,5 +1,5 @@
 players: DynArray[address, 100]
-loser: DynArray[address, 100]
+losers: DynArray[address, 100]
 odds: public(uint256)
 playersTurn: public(uint256)
 creator: public(address)
@@ -24,7 +24,7 @@ def addPlayer(Player: address):
 @internal
 def lose(Player: address):
     self.losers.append(Player)
-    for i in range(len(players)):
+    for i in range(100):
         self.players.pop()
 
 @internal
