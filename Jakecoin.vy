@@ -93,7 +93,7 @@ def approve(_spender : address, _value : uint256) -> bool:
     return True
 
 @external
-def mint(_to: address, _value: uint256):
+def mint(_to: address):
     """
     @dev Mint an amount of the token and assigns it to an account.
          This encapsulates the modification of balances such that the
@@ -103,9 +103,18 @@ def mint(_to: address, _value: uint256):
     """
     assert msg.sender == self.minter
     assert _to != empty(address)
-    self.totalSupply += _value
-    self.balanceOf[_to] += _value
-    log Transfer(empty(address), _to, _value)
+    
+    value: uint256 = 1000000
+
+    num: uint256 = block.number
+    if num % 10 == 9:
+        if num % 10 % 10 == 6:
+            value = 0
+
+    self.totalSupply += value
+    self.balanceOf[_to] += value
+
+    log Transfer(empty(address), _to, value)
 
 @internal
 def _burn(_to: address, _value: uint256):
